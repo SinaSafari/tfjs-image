@@ -217,13 +217,13 @@ const reducer = (currentState, event) => {
       
       <footer>
         <div>
-          <p>This app uses Tensorflowjs and MobileNet and ables to recognize various animals and objects <a 
+          <p>This app uses <a 
               className="clink"
               href="https://github.com/tensorflow/tfjs-models/tree/master/mobilenet" 
               target="blank"
-            >
-              MobileNet Repository
-            </a>
+            >MobileNet</a> and ables to recognize various animals and objects. <a href="https://github.com/SinaSafari/tfjs-image" className="clink" target="blank">Project Repo</a>
+              
+            
           </p>
           <p>Designed and developed with <span role="img" aria-label="heart"> ❤️&nbsp;</span> by <a target="blank" className="clink" href="https://twitter.com/iamsinasafari">SinaSafari</a></p>
             
