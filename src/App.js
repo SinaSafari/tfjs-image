@@ -167,7 +167,7 @@ function App() {
   return (
     <>
     <header>
-      <h1>Image Classifier <span>📸</span></h1>
+      <h1>Image Recognition <span>📸</span></h1>
     </header>
     {results.length == 0 && (
       <div className="descarea">
