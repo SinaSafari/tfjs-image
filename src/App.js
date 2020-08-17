@@ -1,6 +1,6 @@
 import React, {useReducer, useState, useRef} from 'react';
+import * as tf from '@tensorflow/tfjs'
 import * as mobilenet from "@tensorflow-models/mobilenet"
-import * as tf from '@tensorflow/tfjs' 
 import './App.css';
 
 
@@ -50,7 +50,24 @@ const stateMachine = {
   }
 }
 
-/**
+
+
+function App() {
+
+  tf.setBackend('cpu')
+  console.log(tf.backend());
+
+  // states
+  const [model, setModel] = useState(null)
+  const [imageUrl, setImageUrl] = useState(null)
+  const [results, setResults] = useState([])
+
+  // refs
+  const inputRef = useRef()
+  const imageRef = useRef()
+
+  // reducer function and useReducer
+  /**
  * @description like any other reducer functions, it gets the current state and 
  * an action or in our case an `event` and based on the action returns new state.
  * in our case, event always is `next`
@@ -61,19 +78,6 @@ const stateMachine = {
 const reducer = (currentState, event) => {
   return stateMachine.states[currentState].on[event] || stateMachine.initial
 }
-
-function App() {
-
-  tf.setBackend("cpu")
-
-  // states
-  const [model, setModel] = useState(null)
-  const [imageUrl, setImageUrl] = useState(null)
-  const [results, setResults] = useState([])
-
-  // refs
-  const inputRef = useRef()
-  const imageRef = useRef()
   
   const [state, dispatch] = useReducer(reducer, stateMachine.initial)
 
@@ -131,7 +135,6 @@ function App() {
       text: "Load Model",
     },
     loadingModel: {
-      action: () => {},
       text: "Loading Model...",
     },
     awaitingUpload: {
@@ -143,7 +146,6 @@ function App() {
       text: "Identify",
     },
     classifying: {
-      action: () => {},
       text: "Identifying",
     },
     complete: {
@@ -167,9 +169,9 @@ function App() {
   return (
     <>
     <header>
-      <h1>Image Recognition <span>📸</span></h1>
+      <h1>Image Recognition <span role="img" aria-label="camera">📸</span></h1>
     </header>
-    {results.length == 0 && (
+    {results.length === 0 && (
       <div className="descarea">
         <h3>Manual</h3>
         <ol>
@@ -223,7 +225,7 @@ function App() {
               MobileNet Repository
             </a>
           </p>
-          <p>Designed and developed with <span> ❤️&nbsp;</span> by <a target="blank" className="clink" href="https://twitter.com/iamsinasafari">SinaSafari</a></p>
+          <p>Designed and developed with <span role="img" aria-label="heart"> ❤️&nbsp;</span> by <a target="blank" className="clink" href="https://twitter.com/iamsinasafari">SinaSafari</a></p>
             
           </div>
       </footer>
